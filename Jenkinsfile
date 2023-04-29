@@ -1,15 +1,20 @@
-node {
-
-    env.PATH = "${tool 'NodeJS'}/bin:${env.PATH}"
-
-    docker.image('node:16-buster-slim').withRun('-p 3000:3000') {
+pipeline {
+    agent {
+        docker {
+            image 'node:16-buster-slim'
+            args '-p 3000:3000'
+        }
+    }
+    stages {
         stage('Build') {
             steps {
-                sh 'cd . && npm install'
+                sh 'npm install'
             }
         }
-        stage('Test') {
-            sh './jenkins/scripts/test.sh'
+        stage('Test') { 
+            steps {
+                sh './jenkins/scripts/test.sh' 
+            }
         }
     }
 }
