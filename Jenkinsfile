@@ -13,7 +13,7 @@ pipeline {
                     sshagent(credentials: ['instance-1']) {
                         sh 'ssh -o StrictHostKeyChecking=no ubuntu@18.140.5.87 sh /home/mohamadzaelani09/a433-cicd-labs/jenkins/scripts/deliver.sh'
                         sleep 1m
-                        sh 'ssh -o StrictHostKeyChecking=no ubuntu@18.140.5.87 sh /home/mohamadzaelani09/a433-cicd-labs/jenkins/scripts/deliver.sh'
+                        sh 'ssh -o StrictHostKeyChecking=no ubuntu@18.140.5.87 sh /home/mohamadzaelani09/a433-cicd-labs/jenkins/scripts/kill.sh'
                     }
                 }
             }
