@@ -26,7 +26,7 @@ pipeline {
             steps {
                 sshagent(['mfajrizulfa']){
                     sh 'a428-cicd-labs/jenkins/scripts/deliver.sh'
-                    ssh -i "deploy.pem" ubuntu@ec2-13-250-64-22.ap-southeast-1.compute.amazonaws.com
+                    //ssh -i "deploy.pem" ubuntu@ec2-13-250-64-22.ap-southeast-1.compute.amazonaws.com
                 }
                 sh './jenkins/scripts/deliver.sh'
                 sleep(time: 1, unit: 'MINUTES')
