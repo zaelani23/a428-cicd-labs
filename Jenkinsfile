@@ -11,8 +11,9 @@ pipeline {
             steps {
                 script {
                     sshagent(credentials: ['instance-1']) {
-                        def remoteDeployScript = sh(script: 'cat deploy.sh', returnStdout: true).trim()
-                        sshCommand remote: 'mohamadzaelani09@35.224.120.106', command: remoteDeployScript
+                        sh 'ssh -o StrictHostKeyChecking=no ubuntu@18.140.5.87 sh /home/mohamadzaelani09/a433-cicd-labs/jenkins/scripts/deliver.sh'
+                        sleep 1m
+                        sh 'ssh -o StrictHostKeyChecking=no ubuntu@18.140.5.87 sh /home/mohamadzaelani09/a433-cicd-labs/jenkins/scripts/deliver.sh'
                     }
                 }
             }
