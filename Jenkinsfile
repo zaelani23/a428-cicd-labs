@@ -28,13 +28,11 @@ pipeline {
     	}
          stage('Deploy') {
             steps {
-                script {
   	              sshagent(credentials: ['ubuntu']) {
                     	sh 'ssh -o StrictHostKeyChecking=no ubuntu@13.250.64.22 sh /home/ubuntu/a428-cicd-labs/jenkins/scripts/deliver.sh'
                     	sleep(time: 1, unit: 'MINUTES')
                     	sh 'ssh -o StrictHostKeyChecking=no ubuntu@13.250.64.22 sh /home/ubuntu/a428-cicd-labs/jenkins/scripts/kill.sh'
                 	}
-            	}
             }
         }
     }
