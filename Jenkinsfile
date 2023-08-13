@@ -24,7 +24,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh 'ssh -o StrictHostKeyChecking=no mohamadzaelani09@34.28.94.220 sh /home/mohamadzaelani09/a428-cicd-labs/jenkins/scripts/deliver.sh"'
+                    sh 'ssh -o StrictHostKeyChecking=no mohamadzaelani09@34.28.94.220 sh /home/mohamadzaelani09/a428-cicd-labs/jenkins/scripts/deliver.sh'
                     sleep(time: 1, unit: 'MINUTES')
                     sh 'ssh -o StrictHostKeyChecking=no mohamadzaelani09@34.28.94.220 sh /home/mohamadzaelani09/a428-cicd-labs/jenkins/scripts/kill.sh'
                 }
