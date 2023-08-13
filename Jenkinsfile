@@ -24,11 +24,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh '''
-                        sudo apt-get update
-                        sudo apt-get install -y openssh-client
-                    '''
-                    sh 'ssh-agent bash -c "ssh-add /var/jenkins_home/.ssh/id_rsa; ssh -o StrictHostKeyChecking=no mohamadzaelani09@34.28.94.220 sh /home/mohamadzaelani09/a428-cicd-labs/jenkins/scripts/deliver.sh"'
+                    sh 'ssh -o StrictHostKeyChecking=no mohamadzaelani09@34.28.94.220 sh /home/mohamadzaelani09/a428-cicd-labs/jenkins/scripts/deliver.sh"'
                     sleep(time: 1, unit: 'MINUTES')
                     sh 'ssh -o StrictHostKeyChecking=no mohamadzaelani09@34.28.94.220 sh /home/mohamadzaelani09/a428-cicd-labs/jenkins/scripts/kill.sh'
                 }
