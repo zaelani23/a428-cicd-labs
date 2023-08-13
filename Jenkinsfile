@@ -24,8 +24,8 @@ pipeline {
          stage('Deploy') {
             steps {
                 sh '''
-                        sudo apt-get update
-                        sudo apt-get install -y openssh-client
+                        apt-get update
+                        apt-get install -y openssh-client
                     '''
                     sh 'ssh-agent bash -c "ssh-add /var/jenkins_home/.ssh/id_rsa; ssh -o StrictHostKeyChecking=no ubuntu@18.140.55.135 sh /home/ubuntu/a428-cicd-labs/jenkins/scripts/deliver.sh"'
                     sleep(time: 1, unit: 'MINUTES')
