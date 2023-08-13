@@ -23,13 +23,15 @@ pipeline {
         }
          stage('Deploy') {
             steps {
-  	              sshagent(credentials: ['ubuntu']) {
+                script {
                     sh '''
-                    	sh 'ssh -o StrictHostKeyChecking=no ubuntu@18.140.55.135 sh /home/ubuntu/a428-cicd-labs/jenkins/scripts/deliver.sh'
-                    	sleep(time: 1, unit: 'MINUTES')
-                    	sh 'ssh -o StrictHostKeyChecking=no ubuntu@18.140.55.135 sh /home/ubuntu/a428-cicd-labs/jenkins/scripts/kill.sh'
-                	'''
-                    }
+                        apt-get update
+                        apt-get install -y openssh-client
+                    '''
+                    sh 'ssh-agent bash -c "ssh-add /var/jenkins_home/.ssh/id_rsa; ssh -o StrictHostKeyChecking=no ubuntu@18.140.55.135 sh /home/ubuntu/a428-cicd-labs/jenkins/scripts/deliver.sh"'
+                    sleep(time: 1, unit: 'MINUTES')
+                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@18.140.55.135 sh /home/ubuntu/a428-cicd-labs/jenkins/scripts/kill.sh'
+                }
             }
         }
     }
