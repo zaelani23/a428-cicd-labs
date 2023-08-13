@@ -25,7 +25,7 @@ pipeline {
             steps {
                 script {
                     sshagent(credentials: ['instance-1']) {
-                        sh 'ssh -o StrictHostKeyChecking=no mohamadzaelani09@34.28.94.220 cd /home/mohamadzaelani09/a428-cicd-labs/ && git pull'
+                        sh 'ssh -o StrictHostKeyChecking=no mohamadzaelani09@34.28.94.220 cd /home/mohamadzaelani09/a428-cicd-labs/ && git pull origin react-app'
                         sh 'ssh -o StrictHostKeyChecking=no mohamadzaelani09@34.28.94.220 sh /home/mohamadzaelani09/a428-cicd-labs/jenkins/scripts/deliver.sh'
                         sleep(time: 1, unit: 'MINUTES')
                         sh 'ssh -o StrictHostKeyChecking=no mohamadzaelani09@34.28.94.220 sh /home/mohamadzaelani09/a428-cicd-labs/jenkins/scripts/kill.sh'
