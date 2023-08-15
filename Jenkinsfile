@@ -27,7 +27,7 @@ pipeline {
                     def remoteCommands = """
                         cd /home/ec2-user/a428-cicd-labs/
                         git pull origin react-app
-                        ./jenkins/scripts/deliver.sh
+                        sh ./jenkins/scripts/deliver.sh
                     """
                     sshagent(credentials: ['ec2-user']) {
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@ec2-54-166-250-178.compute-1.amazonaws.com '''${remoteCommands}'''"
