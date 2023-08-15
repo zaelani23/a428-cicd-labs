@@ -28,7 +28,7 @@ pipeline {
                         sh 'ssh -o StrictHostKeyChecking=no ubuntu@18.140.55.135 cd /home/ubuntu/a428-cicd-labs/ && git pull origin react-app'
                         sh 'ssh -o StrictHostKeyChecking=no ubuntu@18.140.55.135 sh /home/ubuntu/a428-cicd-labs/jenkins/scripts/deliver.sh'
                         sleep(time: 1, unit: 'MINUTES')
-                        sh 'ssh -o StrictHostKeyChecking=no ubuntu9@18.140.55.135 sh /home/ubuntu/a428-cicd-labs/jenkins/scripts/kill.sh'
+                        sh 'ssh -o StrictHostKeyChecking=no ubuntu@18.140.55.135 sh /home/ubuntu/a428-cicd-labs/jenkins/scripts/kill.sh'
                     }
                 }
             }
