@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'node:16-buster-slim' 
+            image 'node:16' 
             args '-p 3000:3000' 
         }
     }
@@ -21,15 +21,16 @@ pipeline {
                 input message: 'Lanjutkan ke tahap Deploy?'
             }
         }
-         stage('Deploy') {
+        stage('Deploy') {
             steps {
-                sh '''
-                        apt-get update
-                        apt-get install -y openssh-client
-                    '''
-                    sh 'ssh-agent bash -c "ssh-add /var/jenkins_home/.ssh/id_rsa; ssh -o StrictHostKeyChecking=no ubuntu@18.140.55.135 sh /home/ubuntu/a428-cicd-labs/jenkins/scripts/deliver.sh"'
-                    sleep(time: 1, unit: 'MINUTES')
-                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@18.140.55.135 sh /home/ubuntu/a428-cicd-labs/jenkins/scripts/kill.sh'
+                script {
+                    sshagent(credentials: ['ubuntu']) {
+                        sh 'ssh -o StrictHostKeyChecking=no ubuntu@18.140.55.135 cd /home/mohamadzaelani09/a428-cicd-labs/ && git pull origin react-app'
+                        sh 'ssh -o StrictHostKeyChecking=no ubuntu@18.140.55.135 sh /home/mohamadzaelani09/a428-cicd-labs/jenkins/scripts/deliver.sh'
+                        sleep(time: 1, unit: 'MINUTES')
+                        sh 'ssh -o StrictHostKeyChecking=no ubuntu9@18.140.55.135 sh /home/mohamadzaelani09/a428-cicd-labs/jenkins/scripts/kill.sh'
+                    }
+                }
             }
         }
     }
