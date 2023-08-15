@@ -31,6 +31,7 @@ pipeline {
                     """
                     sshagent(credentials: ['ec2-user']) {
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@ec2-54-166-250-178.compute-1.amazonaws.com '''${remoteCommands}'''"
+                        sleep(time: 1, unit: 'MINUTES')
                         sh 'ssh -o StrictHostKeyChecking=no ec2-user@ec2-54-166-250-178.compute-1.amazonaws.com sh /home/ec2-user/a428-cicd-labs/jenkins/scripts/kill.sh'
                     }
                 }
