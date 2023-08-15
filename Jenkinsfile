@@ -25,10 +25,10 @@ pipeline {
             steps {
                 script {
                     sshagent(credentials: ['ec2-user']) {
-                        sh 'ssh -o StrictHostKeyChecking=no ec2-user@ec2-54-166-250-178.compute-1.amazonaws.com cd /home/mohamadzaelani09/a428-cicd-labs/ && git pull origin react-app'
-                        sh 'ssh -o StrictHostKeyChecking=no ec2-user@ec2-54-166-250-178.compute-1.amazonaws.com sh /home/mohamadzaelani09/a428-cicd-labs/jenkins/scripts/deliver.sh'
+                        sh 'ssh -o StrictHostKeyChecking=no ec2-user@ec2-54-166-250-178.compute-1.amazonaws.com cd /home/ec2-user/a428-cicd-labs/ && git pull origin react-app'
+                        sh 'ssh -o StrictHostKeyChecking=no ec2-user@ec2-54-166-250-178.compute-1.amazonaws.com sh /home/ec2-user/a428-cicd-labs/jenkins/scripts/deliver.sh'
                         sleep(time: 1, unit: 'MINUTES')
-                        sh 'ssh -o StrictHostKeyChecking=no ec2-user@ec2-54-166-250-178.compute-1.amazonaws.com sh /home/mohamadzaelani09/a428-cicd-labs/jenkins/scripts/kill.sh'
+                        sh 'ssh -o StrictHostKeyChecking=no ec2-user@ec2-54-166-250-178.compute-1.amazonaws.com sh /home/ec2-user/a428-cicd-labs/jenkins/scripts/kill.sh'
                     }
                 }
             }
